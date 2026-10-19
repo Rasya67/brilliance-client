@@ -1,0 +1,20 @@
+
+{
+  "schemaVersion": 1,
+  "id": "brilliance",
+  "version": "${version}",
+  "name": "Brilliance Client",
+  "description": "Quiet Excellence",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.brilliance.client.BrillianceClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.1",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
