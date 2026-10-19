@@ -1,0 +1,33 @@
+name: Build JAR
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ekstrak proyek
+        run: unzip -o BrillianceClient_Starter_fixed.zip -d app
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: current
+
+      - name: Build
+        working-directory: app
+        run: gradle build --no-daemon --stacktrace
+
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: brilliance-client-jar
+          path: app/build/libs/brilliance-client-0.1.0.jar
